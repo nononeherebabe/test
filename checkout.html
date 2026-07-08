@@ -1,0 +1,151 @@
+	<!DOCTYPE html>
+	<html lang="ar" dir="rtl">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>إتمام الطلب - مناحل الجنوب</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+		<style>
+			:root { --gold: #d4af37; --dark-bg: #111111; --dark-card: #1a1a1a; --text-light: #f5f5f5; --text-muted: #aaaaaa; }
+			* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; }
+			body { background-color: var(--dark-bg); color: var(--text-light); padding: 40px 5%; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+			
+			.checkout-container { background: var(--dark-card); border: 1px solid rgba(212, 175, 55, 0.1); padding: 30px; border-radius: 12px; width: 100%; max-width: 550px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+			.back-btn { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 8px; margin-bottom: 20px; transition: color 0.2s; }
+			.back-btn:hover { color: var(--gold); }
+			
+			h2 { font-size: 1.6rem; color: var(--gold); margin-bottom: 8px; }
+			p.subtitle { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 25px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 15px; }
+			
+			.summary-box { background: rgba(212, 175, 55, 0.05); border: 1px dashed var(--gold); padding: 15px; border-radius: 8px; margin-bottom: 25px; }
+			.summary-row { display: flex; justify-content: space-between; font-weight: 700; font-size: 1.1rem; }
+			
+			.checkout-form { display: flex; flex-direction: column; gap: 15px; }
+			.form-group { display: flex; flex-direction: column; gap: 6px; }
+			.form-group label { font-size: 0.85rem; color: var(--text-muted); font-weight: 600; }
+			
+			.checkout-form input, .checkout-form select { background: #111; border: 1px solid rgba(212, 175, 55, 0.2); padding: 12px; border-radius: 6px; color: #fff; font-size: 0.95rem; width: 100%; }
+			.checkout-form input:focus, .checkout-form select:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 5px rgba(212, 175, 55, 0.3); }
+			
+			.payment-method-container { background: #111; border: 1px solid rgba(212, 175, 55, 0.2); padding: 14px; border-radius: 6px; display: flex; align-items: center; justify-content: space-between; margin-top: 10px; }
+			.payment-label { font-size: 0.95rem; font-weight: 600; }
+			.cod-badge { background: rgba(212, 175, 55, 0.1); color: var(--gold); padding: 5px 12px; border-radius: 4px; font-size: 0.85rem; font-weight: bold; border: 1px solid rgba(212, 175, 55, 0.3); }
+			
+			.submit-order-btn { background: var(--gold); color: #000; border: none; padding: 15px; border-radius: 6px; font-weight: 700; cursor: pointer; font-size: 1.1rem; margin-top: 15px; transition: opacity 0.2s; width: 100%; }
+			.submit-order-btn:hover { opacity: 0.9; }
+		</style>
+	</head>
+	<body>
+
+		<div class="checkout-container">
+			<a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-right"></i> العودة للمتجر</a>
+			<h2>إتمام عملية الشراء</h2>
+			<p class="subtitle">يرجى ملء البيانات بدقة لتأكيد طلبيتك وشحنها إليك.</p>
+			
+			<div class="summary-box">
+				<div class="summary-row">
+					<span>المجموع الإجمالي للطلب:</span>
+					<span id="finalTotal">0 د.ت</span>
+				</div>
+			</div>
+
+			<!-- FORM ACTION: ضع رابط Formspree الخاص بك هنا عوضاً عن الرابط التجريبي بالأسفل -->
+				<!-- نحينا الـ action والـ method متاع formspree تماماً -->
+        <form class="checkout-form" id="directOrderForm">
+            
+            <div class="form-group">
+                <label><i class="fa-regular fa-user"></i> الإسم واللقب</label>
+                <input type="text" name="الاسم واللقب" placeholder="الاسم واللقب" required>
+            </div>
+
+            <div class="form-group">
+                <label><i class="fa-solid fa-phone-volume"></i> رقم الهاتف</label>
+                <input type="tel" name="رقم الهاتف" placeholder="رقم الهاتف (8 أرقام)" pattern="[0-9]{8}" required>
+            </div>
+
+            <div class="form-group">
+                <label><i class="fa-regular fa-envelope"></i> البريد الإلكتروني</label>
+                <input type="email" name="البريد الالكتروني" placeholder="example@gmail.com" required>
+            </div>
+
+            <div class="form-group">
+                <label><i class="fa-solid fa-map-location-dot"></i> الولاية</label>
+                <select name="الولاية" required>
+                    <option value="" disabled selected>اختر الولاية</option>
+                    <option value="تونس">تونس</option><option value="صفاقس">صفاقس</option><option value="سوسة">سوسة</option>
+                    <option value="قابس">قابس</option><option value="مدنين">مدنين</option><option value="تطاوين">تطاوين</option>
+                    <option value="قفصة">قفصة</option><option value="توزر">توزر</option><option value="قبلي">قبلي</option>
+                    <option value="أريانة">أريانة</option><option value="بن عروس">بن عروس</option><option value="منوبة">منوبة</option>
+                    <option value="بنزرت">بنزرت</option><option value="نابل">نابل</option><option value="باجة">باجة</option>
+                    <option value="جندوبة">جندوبة</option><option value="الكاف">الكاف</option><option value="سليانة">سليانة</option>
+                    <option value="القيروان">القيروان</option><option value="القصرين">القصرين</option><option value="سيدي بوزيد">سيدي بوزيد</option>
+                    <option value="المهدية">المهدية</option><option value="المنستير">المنستير</option><option value="زغوان">زغوان</option>
+                </select>
+            </div>
+
+             <div class="form-group">
+                <label><i class="fa-solid fa-city"></i> المدينة </label>
+                <input type="text" name="المدينة" placeholder="المدينة" required>
+            </div>
+
+            <div class="form-group">
+                <label><i class="fa-solid fa-house-chimney"></i> العنوان بالكامل</label>
+                <input type="text" name="العنوان التفصيلي" placeholder="اسم الشارع، رقم المنزل..." required>
+            </div>
+
+            <div class="form-group">
+                <label><i class="fa-solid fa-tree-city"></i> الرمز البريدي (Zip Code)</label>
+                <input type="text" name="الرمز البريدي" placeholder="تتكون من 4 أرقام" pattern="[0-9]{4}" required>
+            </div>
+
+            <div class="payment-method-container">
+                <span class="payment-label">خيارات الدفع المتاحة:</span>
+                <span class="cod-badge"><i class="fa-solid fa-truck-ramp-box"></i> الدفع عند الاستلام (COD)</span>
+            </div>
+
+            <button type="submit" class="submit-order-btn">
+                <span>تأكيد الطلب الآن</span>
+                <i class="fa-solid fa-check"></i>
+            </button>
+        </form>
+    </div>
+
+    <script>
+        // جلب وحساب المجموع عند تحميل الصفحة
+        window.onload = function() {
+            const rawCart = localStorage.getItem('honey_cart');
+            if (!rawCart || JSON.parse(rawCart).length === 0) {
+                alert('سلة المشتريات فارغة، سيتم توجيهك للمتجر.');
+                window.location.href = 'index.html';
+                return;
+            }
+            
+            const cart = JSON.parse(rawCart);
+            let subtotal = 0;
+            
+            cart.forEach(item => {
+                subtotal += item.price * item.quantity;
+            });
+            
+            const totalWithShipping = subtotal + 8;
+            
+            document.getElementById('subTotal').innerText = subtotal + ' د.ت';
+            document.getElementById('finalTotal').innerText = totalWithShipping + ' د.ت';
+        };
+
+        // الـ Redirect المباشر وتنظيف السلة عند الضغط على زر الشراء
+        document.getElementById("directOrderForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // منع الفورم من تحديث الصفحة أو الـ Submit العادي
+            
+            // 1. مسح السلة من متصفح الكليون ديريكت
+            localStorage.removeItem('honey_cart');
+            
+            // 2. تحويل العميل فوراً لصفحة النجاح
+            window.location.href = 'success.html';
+        });
+		</script>
+	</body>
+	</html>

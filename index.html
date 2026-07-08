@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مناحل الجنوب - عسل طبيعي 100%</title>
+	<link rel="icon" type="image/png" href="logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root { 
+            --gold: #d4af37; 
+            --gold-light: #f3e5ab; 
+            --dark-bg: #111111; 
+            --dark-card: #1a1a1a; 
+            --text-light: #f5f5f5; 
+            --text-muted: #aaaaaa; 
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; }
+        body { background-color: var(--dark-bg); color: var(--text-light); overflow-x: hidden; line-height: 1.6; }
+        html { scroll-behavior: smooth; }
+        
+        /* NAVBAR */
+        .navbar { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; background: rgba(17, 17, 17, 0.8); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(212, 175, 55, 0.1); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; }
+        .brand-container { display: flex; align-items: center; gap: 15px; }
+        .logo-placeholder { width: 50px; height: 50px; background-color: var(--dark-card); border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 10px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .logo-placeholder img { width: 100%; height: 100%; object-fit: contain; }
+        .brand-text h1 { font-size: 1.3rem; color: var(--gold); font-weight: 900; }
+        .brand-text p { font-size: 0.75rem; color: var(--text-muted); }
+        .cart-icon-btn { background: var(--dark-card); border: 1px solid rgba(212, 175, 55, 0.1); color: var(--text-light); font-size: 1.2rem; cursor: pointer; position: relative; width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s; }
+        .cart-icon-btn:hover { border-color: var(--gold); color: var(--gold); }
+        .cart-badge { position: absolute; top: -5px; right: -5px; background: var(--gold); color: #000; font-size: 0.75rem; font-weight: bold; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid var(--dark-bg); }
+
+        /* HERO SECTION */
+        .hero { padding: 180px 5% 100px 5%; min-height: 90vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: radial-gradient(circle at center, rgba(212, 175, 55, 0.07) 0%, rgba(17, 17, 17, 0) 70%); }
+        .hero-badge { border: 1px solid rgba(212, 175, 55, 0.3); background: rgba(212, 175, 55, 0.05); padding: 6px 18px; border-radius: 20px; font-size: 0.85rem; color: var(--gold); font-weight: 600; margin-bottom: 25px; }
+        .hero h2 { font-size: 3.2rem; font-weight: 900; margin-bottom: 20px; line-height: 1.3; background: linear-gradient(135deg, #fff 0%, var(--gold-light) 50%, var(--gold) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero p { font-size: 1.15rem; color: var(--text-muted); max-width: 650px; margin-bottom: 40px; font-weight: 300; }
+        .cta-btn { background: linear-gradient(135deg, var(--gold) 0%, #b38f1d 100%); color: #000; padding: 15px 40px; border-radius: 30px; font-weight: 700; text-decoration: none; font-size: 1.05rem; box-shadow: 0 5px 20px rgba(212, 175, 55, 0.25); transition: all 0.3s; display: inline-flex; align-items: center; gap: 10px; }
+        .cta-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(212, 175, 55, 0.35); }
+
+        /* PRODUCTS SECTION */
+        .products-section { padding: 100px 5%; background: rgba(26, 26, 26, 0.4); border-top: 1px solid rgba(255, 255, 255, 0.02); }
+        .section-header { text-align: center; margin-bottom: 60px; }
+        .section-header span { color: var(--gold); font-size: 0.85rem; font-weight: bold; tracking-width: 2px; text-transform: uppercase; }
+        .section-header h3 { font-size: 2.2rem; color: #fff; font-weight: 900; margin-top: 5px; }
+        .section-header .line { width: 60px; height: 3px; background: var(--gold); margin: 15px auto 0 auto; border-radius: 2px; }
+        
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 35px; max-width: 1200px; margin: 0 auto; }
+        
+        .product-card { background-color: var(--dark-card); border: 1px solid rgba(212, 175, 55, 0.04); border-radius: 18px; padding: 30px; display: flex; flex-direction: column; justify-content: space-between; transition: all 0.3s ease; cursor: pointer; }
+        .product-card:hover { transform: translateY(-8px); border-color: rgba(212, 175, 55, 0.2); box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
+        
+        .product-visual { height: 450px; background: #111; border-radius: 18px; border: 1px solid rgba(255,255,255,0.02); display: flex; align-items: center; justify-content: center; margin-bottom: 25px; position: relative; overflow: hidden; }
+        .featured-tag { position: absolute; top: 12px; right: 12px; background: rgba(212, 175, 55, 0.1); border: 1px solid rgba(212, 175, 55, 0.2); color: var(--gold); font-size: 0.7rem; font-weight: bold; padding: 4px 10px; border-radius: 6px; z-index: 2; }
+        
+        .product-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 12px; color: #fff; }
+        .product-card:hover .product-title { color: var(--gold); }
+        .product-desc { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 25px; line-height: 1.6; font-weight: 300; }
+        
+        .product-meta { display: flex; justify-content: space-between; align-items: center; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.05); }
+        .product-price { font-size: 1.4rem; font-weight: 900; color: var(--gold); }
+        
+        .add-to-cart-btn { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(212, 175, 55, 0.2); color: var(--text-light); padding: 10px 22px; border-radius: 12px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: all 0.3s; }
+        .add-to-cart-btn:hover { background: var(--gold); color: #000; border-color: transparent; font-weight: 700; }
+
+        /* SIDE CART DRAWER */
+        .cart-drawer { position: fixed; top: 0; right: -100%; width: 420px; max-width: 100%; height: 100%; background: #141414; z-index: 2000; transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1); display: flex; flex-direction: column; border-left: 1px solid rgba(212, 175, 55, 0.1); box-shadow: -10px 0 30px rgba(0,0,0,0.6); }
+        .cart-drawer.open { right: 0; }
+        .cart-header { padding: 25px; border-bottom: 1px solid rgba(212, 175, 55, 0.1); display: flex; justify-content: space-between; align-items: center; }
+        .cart-header h4 { font-weight: 900; color: var(--gold); font-size: 1.1rem; }
+        .close-cart-btn { background: none; border: none; color: var(--text-muted); font-size: 1.4rem; cursor: pointer; }
+        
+        .cart-items-container { flex: 1; overflow-y: auto; padding: 25px; display: flex; flex-direction: column; gap: 15px; }
+        .cart-item { display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.04); padding: 15px; border-radius: 12px; }
+        .cart-item h5 { font-size: 0.95rem; font-weight: 700; color: #fff; }
+        .cart-item p { color: var(--gold); font-weight: 700; font-size: 0.9rem; margin-top: 2px; }
+        .remove-item-btn { background: none; border: none; color: #ff4d4d; cursor: pointer; font-size: 1rem; padding: 5px; }
+        
+        .checkout-redirect-section { padding: 25px; background: #0b0b0b; border-top: 1px solid rgba(212, 175, 55, 0.15); display: flex; flex-direction: column; gap: 12px; }
+        .info-row { display: flex; justify-content: space-between; align-items: center; width: 100%; font-size: 0.95rem; }
+        .total-row { display: flex; justify-content: space-between; align-items: center; width: 100%; font-weight: 700; border-top: 1px dashed rgba(212, 175, 55, 0.2); padding-top: 12px; margin-top: 4px; }
+        .total-row #cartTotal { color: var(--gold); font-size: 1.5rem; font-weight: 900; }
+        
+        .go-checkout-btn { width: 100%; background: var(--gold); color: #000; border: none; padding: 14px; border-radius: 10px; font-weight: 700; cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 8px; transition: opacity 0.2s; }
+        .go-checkout-btn:hover { opacity: 0.9; }
+        
+        .cart-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 1500; display: none; backdrop-filter: blur(4px); }
+        .cart-overlay.open { display: block; }
+
+        /* PRODUCT MODAL WITH CATEGORIES (WEIGHT SELECTOR) */
+        .product-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); z-index: 2500; display: none; align-items: center; justify-content: center; padding: 20px; }
+        .product-modal.open { display: flex; }
+        .modal-content { background: var(--dark-card); border: 1px solid rgba(212, 175, 55, 0.2); width: 100%; max-width: 650px; border-radius: 24px; padding: 35px; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.6); display: flex; flex-direction: column; gap: 20px; }
+        .close-modal-btn { position: absolute; top: 20px; left: 20px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); color: var(--text-muted); width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1.1rem; transition: all 0.2s; }
+        .close-modal-btn:hover { border-color: var(--gold); color: var(--gold); }
+        .modal-body { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: center; }
+        @media (max-width: 580px) { .modal-body { grid-template-columns: 1fr; text-align: center; } .modal-img-container { height: 220px !important; } .weight-selector { justify-content: center !important; } }
+        .modal-img-container { height: 320px; background: #111; border-radius: 16px; border: 1px solid rgba(255,255,255,0.02); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .modal-img-container img { width: 100%; height: 100%; object-fit: cover; }
+        .modal-info { display: flex; flex-direction: column; }
+        .modal-info h4 { font-size: 1.6rem; font-weight: 900; color: #fff; margin-bottom: 5px; }
+        .modal-info .modal-price { font-size: 1.8rem; font-weight: 900; color: var(--gold); margin-bottom: 15px; }
+        .modal-info p { color: var(--text-muted); font-size: 0.95rem; font-weight: 300; margin-bottom: 20px; line-height: 1.7; }
+        
+        .weight-label { font-size: 0.85rem; color: var(--gold); font-weight: bold; margin-bottom: 8px; display: block; }
+        .weight-selector { display: flex; gap: 10px; margin-bottom: 25px; }
+        .weight-btn { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.1); color: var(--text-light); padding: 8px 16px; border-radius: 10px; cursor: pointer; font-weight: 600; font-size: 0.85rem; transition: all 0.2s; }
+        .weight-btn:hover { border-color: var(--gold); color: var(--gold); }
+        .weight-btn.active { background: rgba(212, 175, 55, 0.1); border-color: var(--gold); color: var(--gold); font-weight: 700; }
+
+        footer { text-align: center; padding: 40px 5%; border-top: 1px solid rgba(255,255,255,0.02); background: #0b0b0b; display: flex; flex-direction: column; align-items: center; gap: 20px; }
+        .footer-socials { display: flex; gap: 15px; justify-content: center; align-items: center; }
+        .footer-link { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font-size: 0.95rem; font-weight: 600; padding: 10px 20px; border-radius: 30px; border: 1px solid rgba(212, 175, 55, 0.1); background: rgba(255, 255, 255, 0.02); transition: all 0.3s ease; }
+        .footer-link.fb-link { color: #1877f2; }
+        .footer-link.fb-link:hover { background: rgba(24, 119, 242, 0.1); border-color: #1877f2; transform: translateY(-3px); }
+        .footer-link.wa-link { color: #25d366; }
+        .footer-link.wa-link:hover { background: rgba(37, 211, 102, 0.1); border-color: #25d366; transform: translateY(-3px); }
+        .copyright-text { font-size: 0.85rem; color: var(--text-muted); }
+        .copyright-text span { color: var(--gold); font-weight: 700; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="brand-container">
+            <div class="logo-placeholder">
+                <img src="logo.png" alt="مناحل الجنوب" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <i class="fa-solid fa-jar text-gold" style="display:none; color:var(--gold); font-size:1.3rem;"></i>
+            </div>
+            <div class="brand-text">
+                <h1>مناحل الجنوب</h1>
+                <p>Manehel Al Janoub</p>
+            </div>
+        </div>
+        <button class="cart-icon-btn" onclick="toggleCart()">
+            <i class="fa-solid fa-bag-shopping"></i>
+            <span class="cart-badge" id="cartBadge">0</span>
+        </button>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-badge"><i class="fa-solid fa-certificate"></i> عسل طبيعي 100% مضمون ومخبري</div>
+        <h2>المذاق الملكي الأصيل<br>من قلب الجنوب التونسي</h2>
+        <p>نستخلص لكم عسلنا النقي مباشرة من خلايا النحل في بيئتها الطبيعية بالجنوب، لنضمن لكم أعلى مستويات الجودة والفوائد العلاجية.</p>
+        <a href="#products" class="cta-btn">
+            <span>إكتشف منتجاتنا الفاخرة</span>
+            <i class="fa-solid fa-arrow-down"></i>
+        </a>
+    </section>
+
+    <section class="products-section" id="products">
+        <div class="section-header">
+            <span>// خيرات مناحلنا</span>
+            <h3>إختر نوع عسلك المفضل</h3>
+            <div class="line"></div>
+        </div>
+
+        <div class="products-grid">
+            <!-- المنتج 1 -->
+            <div class="product-card" onclick="handleCardClick(event, 'عسل السدر الفاخر', 45, 'sedr.png', 'من أندر وأجود أنواع العسل في تونس، ممتاز جداً لتقوية جهاز المناعة ورفع مستويات الطاقة.')">
+                <div>
+                    <div class="product-visual">
+                        <img src="sedr.png" alt="عسل السدر الفاخر" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
+                        <span class="featured-tag">الأكثر طلباً 🔥</span>
+                    </div>
+                    <h4 class="product-title">عسل السدر الفاخر</h4>
+                    <p class="product-desc">من أندر وأجود أنواع العسل في تونس، ممتاز جداً لتقوية جهاز المناعة ورفع مستويات الطاقة.</p>
+                </div>
+                <div class="product-meta">
+                    <span class="product-price">25 د.ت <small style="font-size:0.75rem; color:var(--text-muted); font-weight:normal;">(250غ)</small></span>
+                    <button class="add-to-cart-btn" onclick="event.stopPropagation(); openProductModal(event, 'عسل السدر الفاخر', 45, 'sedr.png', 'من أندر وأجود أنواع العسل في تونس، ممتاز جداً لتقوية جهاز المناعة ورفع مستويات الطاقة.')">إختر الوزن</button>
+                </div>
+            </div>
+
+            <!-- المنتج 2 -->
+            <div class="product-card" onclick="handleCardClick(event, 'عسل الزعتر', 38, 'za.png', 'مستخلص من أعشاب جبال الجنوب، رائع وفعال لتخفيف السعال وتطهير الجهاز الهضمي.')">
+                <div>
+                    <div class="product-visual">
+                        <img src="za.png" alt="عسل الزعتر" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
+                    </div>
+                    <h4 class="product-title">عسل الزعتر</h4>
+                    <p class="product-desc">مستخلص من أعشاب جبال الجنوب، رائع وفعال لتخفيف السعال وتطهير الجهاز الهضمي.</p>
+                </div>
+                <div class="product-meta">
+                    <span class="product-price">21 د.ت <small style="font-size:0.75rem; color:var(--text-muted); font-weight:normal;">(250غ)</small></span>
+                    <button class="add-to-cart-btn" onclick="event.stopPropagation(); openProductModal(event, 'عسل الزعتر', 38, 'za.png', 'مستخلص من أعشاب جبال الجنوب، رائع وفعال لتخفيف السعال وتطهير الجهاز الهضمي.')">إختر الوزن</button>
+                </div>
+            </div>
+
+            <!-- المنتج 3 -->
+            <div class="product-card" onclick="handleCardClick(event, 'عسل البرتقال', 28, 'bor.png', 'مستخلص غني ومتنوع للاستعمال اليومي وبديل ممتاز ومثالي للسكر لجميع أفراد العائلة.')">
+                <div>
+                    <div class="product-visual">
+                        <img src="bor.png" alt="عسل البرتقال" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
+                    </div>
+                    <h4 class="product-title">عسل البرتقال</h4>
+                    <p class="product-desc">مستخلص غني ومتنوع للاستعمال اليومي وبديل ممتاز ومثالي للسكر لجميع أفراد العائلة.</p>
+                </div>
+                <div class="product-meta">
+                    <span class="product-price">16 د.ت <small style="font-size:0.75rem; color:var(--text-muted); font-weight:normal;">(250غ)</small></span>
+                    <button class="add-to-cart-btn" onclick="event.stopPropagation(); openProductModal(event, 'عسل البرتقال', 28, 'bor.png', 'مستخلص غني ومتنوع للاستعمال اليومي وبديل ممتاز ومثالي للسكر لجميع أفراد العائلة.')">إختر الوزن</button>
+                </div>
+            </div>
+
+            <!-- المنتج 4 -->
+            <div class="product-card" onclick="handleCardClick(event, 'حبوب اللقاح الطبيعية', 15, 'aa7.png', 'مكمل غذائي طبيعي 100% مستخلص من خلايا النحل، غني بالبروتينات والفيتامينات، ممتاز لتقوية المناعة ومد الجسم بالحيوية.', '100gr_only')">
+                <div>
+                    <div class="product-visual">
+                        <img src="aa7.png" alt="حبوب اللقاح الطبيعية" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
+                    </div>
+                    <h4 class="product-title">حبوب اللقاح الطبيعية</h4>
+                    <p class="product-desc">مكمل غذائي طبيعي 100% مستخلص من خلايا النحل، غني بالبروتينات والفيتامينات، ممتاز لتقوية المناعة ومد الجسم بالحيوية.</p>
+                </div>
+                <div class="product-meta">
+                    <span class="product-price">15 د.ت <small style="font-size:0.75rem; color:var(--text-muted); font-weight:normal;">(100غ)</small></span>
+                    <button class="add-to-cart-btn" onclick="event.stopPropagation(); openProductModal(event, 'حبوب اللقاح الطبيعية', 15, 'aa7.png', 'مكمل غذائي طبيعي 100% مستخلص من خلايا النحل، غني بالبروتينات والفيتامينات، ممتاز لتقوية المناعة ومد الجسم بالحيوية.', '100gr_only')">إختر الوزن</button>
+                </div>
+            </div>
+
+            <!-- المنتج 5 -->
+            <div class="product-card" onclick="handleCardClick(event, 'عسل الكالبتوس العلاجي', 32, 'kaltous.png', 'العسل المثالي للجهاز التنفسي، يساعد بفعالية عالية على تصفية الصدر وتخفيف نزلات البرد الحادة.')">
+                <div>
+                    <div class="product-visual">
+                        <img src="kaltous.png" alt="عسل الكالبتوس العلاجي" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
+                    </div>
+                    <h4 class="product-title">عسل الكالبتوس العلاجي</h4>
+                    <p class="product-desc">العسل المثالي للجهاز التنفسي، يساعد بفعالية عالية على تصفية الصدر وتخفيف نزلات البرد الحادة.</p>
+                </div>
+                <div class="product-meta">
+                    <span class="product-price">18 د.ت <small style="font-size:0.75rem; color:var(--text-muted); font-weight:normal;">(250غ)</small></span>
+                    <button class="add-to-cart-btn" onclick="event.stopPropagation(); openProductModal(event, 'عسل الكالبتوس العلاجي', 32, 'kaltous.png', 'العسل المثالي للجهاز التنفسي، يساعد بفعالية عالية على تصفية الصدر وتخفيف نزلات البرد الحادة.')">إختر الوزن</button>
+                </div>
+            </div>
+
+            <!-- المنتج 6 -->
+            <div class="product-card" onclick="handleCardClick(event, 'عسل السدر الجبلي المميّز', 55, 'jbl.png', 'قطفة ملكية خاصة من أعماق الجبال المرتفعة، ذو قوام كثيف ونقاء مخبري فائق لعلاج دائم وطاقة لا تنتهي.')">
+                <div>
+                    <div class="product-visual">
+                        <img src="jbl.png" alt="عسل السدر الجبلي المميّز" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
+                        <span class="featured-tag">إنتاج محدود 💎</span>
+                    </div>
+                    <h4 class="product-title">عسل السدر الجبلي المميّز</h4>
+                    <p class="product-desc">قطفة ملكية خاصة من أعماق الجبال المرتفعة، ذو قوام كثيف ونقاء مخبري فائق لعلاج دائم وطاقة لا تنتهي.</p>
+                </div>
+                <div class="product-meta">
+                    <span class="product-price">31 د.ت <small style="font-size:0.75rem; color:var(--text-muted); font-weight:normal;">(250غ)</small></span>
+                    <button class="add-to-cart-btn" onclick="event.stopPropagation(); openProductModal(event, 'عسل السدر الجبلي المميّز', 55, 'jbl.png', 'قطفة ملكية خاصة من أعماق الجبال المرتفعة، ذو قوام كثيف ونقاء مخبري فائق لعلاج دائم وطاقة لا تنتهي.')">إختر الوزن</button>
+                </div>
+            </div>
+
+            <!-- المنتج 7 -->
+            <div class="product-card" onclick="handleCardClick(event, 'عسل أم الروبية', 55, 'om.png', 'قطفة ملكية خاصة من أعماق الجبال المرتفعة، ذو قوام كثيف ونقاء مخبري فائق لعلاج دائم وطاقة لا تنتهي.')">
+                <div>
+                    <div class="product-visual">
+                        <img src="om.png" alt="عسل أم الروبية" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
+                        <span class="featured-tag">إنتاج محدود 💎</span>
+                    </div>
+                    <h4 class="product-title">عسل أم الروبية</h4>
+                    <p class="product-desc">قطفة ملكية خاصة من أعماق الجبال المرتفعة، ذو قوام كثيف ونقاء مخبري فائق لعلاج دائم وطاقة لا تنتهي.</p>
+                </div>
+                <div class="product-meta">
+                    <span class="product-price">31 د.ت <small style="font-size:0.75rem; color:var(--text-muted); font-weight:normal;">(250غ)</small></span>
+                    <button class="add-to-cart-btn" onclick="event.stopPropagation(); openProductModal(event, 'عسل أم الروبية', 55, 'om.png', 'قطفة ملكية خاصة من أعماق الجبال المرتفعة، ذو قوام كثيف ونقاء مخبري فائق لعلاج دائم وطاقة لا تنتهي.')">إختر الوزن</button>
+                </div>
+            </div>
+
+            <!-- المنتج 8 -->
+            <div class="product-card" onclick="handleCardClick(event, 'عسل السدر والزعتر', 48, 'seza.png', 'تركيبة ملكية فريدة تجمع بين فوائد عسل السدر لتقوية المناعة وقوة الزعتر لتطهير وتصفية الجهاز التنفسي والهضمي.')">
+                <div>
+                    <div class="product-visual">
+                        <img src="seza.png" alt="عسل السدر والزعتر" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
+                        <span class="featured-tag">مزيج علاجي 🌟</span>
+                    </div>
+                    <h4 class="product-title">عسل السدر والزعتر</h4>
+                    <p class="product-desc">تركيبة ملكية فريدة تجمع بين فوائد عسل السدر لتقوية المناعة وقوة الزعتر لتطهير وتصفية الجهاز التنفسي والهضمي.</p>
+                </div>
+                <div class="product-meta">
+                    <span class="product-price">27 د.ت <small style="font-size:0.75rem; color:var(--text-muted); font-weight:normal;">(250غ)</small></span>
+                    <button class="add-to-cart-btn" onclick="event.stopPropagation(); openProductModal(event, 'عسل السدر والزعتر', 48, 'seza.png', 'تركيبة ملكية فريدة تجمع بين فوائد عسل السدر لتقوية المناعة وقوة الزعتر لتطهير وتصفية الجهاز التنفسي والهضمي.')">إختر الوزن</button>
+                </div>
+            </div>
+
+            <!-- المنتج 9 -->
+            <div class="product-card" onclick="handleCardClick(event, 'عسل الربيع', 30, 'rabia.png', 'مستخلص من أزهار الربيع المتنوعة، يتميز بمذاقه الخفيف والمنعش ورائحته الفواحة، مثالي للاستعمال اليومي لجميع أفراد العائلة.')">
+                <div>
+                    <div class="product-visual">
+                        <img src="rabia.png" alt="عسل الربيع" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
+                        <span class="featured-tag">قِطاف جديد 🌸</span>
+                    </div>
+                    <h4 class="product-title">عسل الربيع</h4>
+                    <p class="product-desc">مستخلص من أزهار الربيع المتنوعة، يتميز بمذاقه الخفيف والمنعش ورائحته الفواحة، مثالي للاستعمال اليومي لجميع أفراد العائلة.</p>
+                </div>
+                <div class="product-meta">
+                    <span class="product-price">17 د.ت <small style="font-size:0.75rem; color:var(--text-muted); font-weight:normal;">(250غ)</small></span>
+                    <button class="add-to-cart-btn" onclick="event.stopPropagation(); openProductModal(event, 'عسل الربيع', 30, 'rabia.png', 'مستخلص من أزهار الربيع المتنوعة، يتميز بمذاقه الخفيف والمنعش ورائحته الفواحة، مثالي للاستعمال اليومي لجميع أفراد العائلة.')">إختر الوزن</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="product-modal" id="productModal" onclick="closeProductModal()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="close-modal-btn" onclick="closeProductModal()"><i class="fa-solid fa-xmark"></i></button>
+            <div class="modal-body">
+                <div class="modal-img-container">
+                    <img id="modalImg" src="" alt="">
+                </div>
+                <div class="modal-info">
+                    <h4 id="modalTitle">اسم المنتج</h4>
+                    <div class="modal-price" id="modalPrice">0 د.ت</div>
+                    <p id="modalDesc">الوصف هنا...</p>
+                    
+                    <span class="weight-label"><i class="fa-solid fa-weight-hanging"></i> إختر الوزن المطلوب:</span>
+                    <div class="weight-selector" id="modalWeightSelector"></div>
+
+                    <button class="go-checkout-btn" id="modalActionBtn" style="margin-top: 0;">
+                        <span>تأكيد وإضافة للسلة</span>
+                        <i class="fa-solid fa-cart-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+    <div class="cart-drawer" id="cartDrawer">
+        <div class="cart-header">
+            <h4><i class="fa-solid fa-basket-shopping"></i> سلة المشتريات</h4>
+            <button class="close-cart-btn" onclick="toggleCart()"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="cart-items-container" id="cartItems">
+            <p style="text-align:center;color:var(--text-muted);font-size:0.9rem;padding:30px 0;">السلة فارغة حالياً</p>
+        </div>
+        
+        <div class="checkout-redirect-section" id="checkoutSection" style="display: none;">
+            <div class="info-row" style="color: var(--text-muted);">
+                <span><i class="fa-solid fa-truck" style="margin-left: 5px; color: var(--gold);"></i> معلوم التوصيل:</span>
+                <span style="font-weight: bold; color: #fff;">8 د.ت</span>
+            </div>
+            <div class="total-row">
+                <span style="color: #fff;">المجموع الكلي:</span>
+                <span id="cartTotal">0 د.ت</span>
+            </div>
+            <button class="go-checkout-btn" onclick="goToCheckout()">
+                <span>المرور إلى صفحة الدفع</span>
+                <i class="fa-solid fa-arrow-left"></i>
+            </button>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-socials">
+            <a href="https://www.facebook.com/profile.php?id=100083175738649" target="_blank" class="footer-link fb-link">
+                <i class="fa-brands fa-facebook"></i> صفحتنا على فيسبوك
+            </a>
+            <a href="https://wa.me/21629055524" target="_blank" class="footer-link wa-link">
+                <i class="fa-brands fa-whatsapp"></i> واتساب: <span style="direction: ltr; display: inline-block;">+216 29 055 524</span>
+            </a>
+        </div>
+        <p class="copyright-text">&copy; 2026 جميع الحقوق محفوظة لـ <span>مناحل الجنوب</span>.</p>
+    </footer>
+
+    <script>
+        let cart = JSON.parse(localStorage.getItem('honey_cart')) || [];
+        let currentBasePrice = 0;
+        let currentSelectedWeight = '250 غرام'; // أصبحت القيمة الافتراضية هنا 250 غرام
+        let currentProductName = '';
+
+        function toggleCart() { 
+            document.getElementById('cartDrawer').classList.toggle('open'); 
+            document.getElementById('cartOverlay').classList.toggle('open'); 
+        }
+
+        function handleCardClick(event, name, price, img, desc, type) {
+            openProductModal(event, name, price, img, desc, type);
+        }
+
+        function openProductModal(event, name, price, img, desc, type) {
+            if(event) event.stopPropagation();
+            currentProductName = name;
+            currentBasePrice = price;
+
+            document.getElementById('modalImg').src = img;
+            document.getElementById('modalTitle').innerText = name;
+            document.getElementById('modalDesc').innerText = desc;
+            
+            const selectorContainer = document.getElementById('modalWeightSelector');
+            const labelContainer = document.querySelector('.weight-label');
+
+            if (type === '100gr_only') {
+                currentSelectedWeight = '100 غرام';
+                if(labelContainer) labelContainer.innerHTML = '<i class="fa-solid fa-weight-hanging"></i> الوزن المتوفر:';
+                if(selectorContainer) {
+                    selectorContainer.innerHTML = `
+                        <button class="weight-btn active" style="pointer-events: none; background: rgba(212, 175, 55, 0.1); border-color: var(--gold); color: var(--gold);">100 غرام</button>
+                    `;
+                }
+            } else {
+                currentSelectedWeight = '250 غرام'; // جعل 250غ هي النشطة تلقائياً عند الفتح
+                if(labelContainer) labelContainer.innerHTML = '<i class="fa-solid fa-weight-hanging"></i> إختر الوزن المطلوب:';
+                if(selectorContainer) {
+                    selectorContainer.innerHTML = `
+                        <button class="weight-btn active" id="w250" onclick="selectWeight('250 غرام')">250 غرام</button>
+                        <button class="weight-btn" id="w500" onclick="selectWeight('500 غرام')">500 غرام</button>
+                        <button class="weight-btn" id="w1000" onclick="selectWeight('1 كغ')">1 كغ</button>
+                    `;
+                }
+            }
+            
+            updateModalPrice();
+
+            document.getElementById('modalActionBtn').onclick = function() {
+                let finalPrice = calculatePriceForWeight(currentBasePrice, currentSelectedWeight);
+                addToCart(currentProductName, finalPrice, currentSelectedWeight);
+                closeProductModal();
+            };
+            
+            document.getElementById('productModal').classList.add('open');
+        }
+
+        function calculatePriceForWeight(basePrice, weight) {
+            if (weight === '100 غرام') return basePrice;
+            if (weight === '250 غرام') {
+                return Math.ceil(basePrice * 0.55); 
+            } else if (weight === '1 كغ') {
+                return Math.ceil(basePrice * 1.9); 
+            }
+            return basePrice;
+        }
+
+        function selectWeight(weight) {
+            currentSelectedWeight = weight;
+            document.querySelectorAll('.weight-btn').forEach(b => b.classList.remove('active'));
+            
+            if(weight === '250 غرام') document.getElementById('w250').classList.add('active');
+            if(weight === '500 غرام') document.getElementById('w500').classList.add('active');
+            if(weight === '1 كغ') document.getElementById('w1000').classList.add('active');
+            
+            updateModalPrice();
+        }
+
+        function updateModalPrice() {
+            let p = calculatePriceForWeight(currentBasePrice, currentSelectedWeight);
+            document.getElementById('modalPrice').innerText = p + ' د.ت';
+        }
+
+        function closeProductModal() {
+            document.getElementById('productModal').classList.remove('open');
+        }
+
+        function addToCart(name, price, weight) {
+            const cartItemId = name + ' - ' + weight;
+            const item = cart.find(i => i.id === cartItemId);
+            
+            if (item) { 
+                item.quantity += 1; 
+            } else { 
+                cart.push({ id: cartItemId, name, price, weight, quantity: 1 }); 
+            }
+            updateCartUI();
+            toggleCart();
+        }
+
+        function removeFromCart(id) { cart = cart.filter(i => i.id !== id); updateCartUI(); }
+        
+        function changeQuantity(id, amount) {
+            const item = cart.find(i => i.id === id);
+            if (item) {
+                item.quantity += amount;
+                if (item.quantity <= 0) { removeFromCart(id); return; }
+                updateCartUI();
+            }
+        }
+        
+        function updateCartUI() {
+    // ⬇️ أضف هذا السطر هنا ليقوم بالحفظ التلقائي عند أي تغيير
+    localStorage.setItem('honey_cart', JSON.stringify(cart));
+
+    const container = document.getElementById('cartItems'); //[cite: 3]
+    const chkSec = document.getElementById('checkoutSection'); //[cite: 3]
+    const badge = document.getElementById('cartBadge'); //[cite: 3]
+    const totalSpan = document.getElementById('cartTotal'); //[cite: 3]
+    let totalI = 0, totalP = 0; //[cite: 3]
+    
+    if (cart.length === 0) { //[cite: 3]
+        container.innerHTML = '<p style="text-align:center;color:var(--text-muted);font-size:0.9rem;padding:30px 0;">السلة فارغة حالياً</p>'; //[cite: 3]
+        chkSec.style.display = 'none'; //[cite: 3]
+        badge.innerText = '0'; //[cite: 3]
+        return; //[cite: 3]
+    }
+    
+    container.innerHTML = ''; //[cite: 3]
+    chkSec.style.display = 'flex'; //[cite: 3]
+    
+    cart.forEach(item => { //[cite: 3]
+        totalI += item.quantity; totalP += (item.price * item.quantity); //[cite: 3]
+        const el = document.createElement('div'); el.className = 'cart-item'; //[cite: 3]
+        el.innerHTML = `
+            <div style="flex: 1; display: flex; flex-direction: column; gap: 3px;">
+                <h5>${item.name}</h5>
+                <span style="font-size: 0.75rem; color: var(--gold); background: rgba(212,175,55,0.08); padding: 2px 8px; border-radius: 4px; width: fit-content; font-weight: bold; border: 1px solid rgba(212,175,55,0.15);">${item.weight}</span>
+                <p style="margin-top: 4px;">${item.price * item.quantity} د.ت</p>
+                <div style="display: flex; align-items: center; gap: 10px; margin-top: 5px;">
+                    <button onclick="changeQuantity('${item.id}', -1)" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(212,175,55,0.2); color: var(--gold); width: 25px; height: 25px; border-radius: 5px; cursor: pointer; font-weight: bold; display: flex; align-items: center; justify-content: center;">-</button>
+                    <span style="color: #fff; font-size: 0.9rem; font-weight: bold; min-width: 20px; text-align: center;">${item.quantity}</span>
+                    <button onclick="changeQuantity('${item.id}', 1)" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(212,175,55,0.2); color: var(--gold); width: 25px; height: 25px; border-radius: 5px; cursor: pointer; font-weight: bold; display: flex; align-items: center; justify-content: center;">+</button>
+                </div>
+            </div>
+            <button class="remove-item-btn" onclick="removeFromCart('${item.id}')"><i class="fa-regular fa-trash-can"></i></button>
+        `; //[cite: 3]
+        container.appendChild(el); //[cite: 3]
+    });
+    badge.innerText = totalI; //[cite: 3]
+    totalSpan.innerText = (totalP + 8) + ' د.ت'; //[cite: 3]
+}
+        
+        function goToCheckout() {
+            localStorage.setItem('honey_cart', JSON.stringify(cart));
+            window.location.href = 'checkout.html';
+        }
+		updateCartUI();
+    </script>
+</body>
+</html>
