@@ -298,7 +298,39 @@
                     <button class="add-to-cart-btn" onclick="event.stopPropagation(); openProductModal(event, 'عسل الربيع', 30, 'rabia.png', 'مستخلص من أزهار الربيع المتنوعة، يتميز بمذاقه الخفيف والمنعش ورائحته الفواحة، مثالي للاستعمال اليومي لجميع أفراد العائلة.')">إختر الوزن</button>
                 </div>
             </div>
+			<div class="product-card" onclick="handleCardClick(event, 'عكبر النحل الطبيعي (البروبوليس)', 60, 'ka.png', 'المضاد الحيوي الطبيعي الأقوى من الخلية مباشرة. يعمل كدرع واقٍ للجسم، ممتاز لتطهير الفم والحلق، ودعم الجهاز التنفسي وتقوية المناعة بشكل فعال.', '100gr_only')">
+        <div>
+            <div class="product-visual">
+                <img src="ka.png" alt="عكبر النحل الطبيعي" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
+                <span class="featured-tag">مضاد حيوي طبيعي 🛡️</span>
+            </div>
+            <h4 class="product-title">عكبر النحل الطبيعي (البروبوليس)</h4>
+            <p class="product-desc">المضاد الحيوي الطبيعي الأقوى من الخلية مباشرة. يعمل كدرع واقٍ للجسم، ممتاز لتطهير الفم والحلق، ودعم المناعة.</p>
         </div>
+        <div class="product-meta">
+            <span class="product-price">60 د.ت <small style="font-size:0.75rem; color:var(--text-muted); font-weight:normal;">(100غ)</small></span>
+            <button class="add-to-cart-btn" onclick="event.stopPropagation(); openProductModal(event, 'عكبر النحل الطبيعي (البروبوليس)', 30, 'ka.png', 'المضاد الحيوي الطبيعي الأقوى من الخلية مباشرة. يعمل كدرع واقٍ للجسم، ممتاز لتطهير الفم والحلق، ودعم الجهاز التنفسي وتقوية المناعة بشكل فعال.', '100gr_only')">إختر الوزن</button>
+        </div>
+    </div>
+
+    <div class="product-card" onclick="handleCardClick(event, 'غذاء ملكة النحل النقي', 20, 'aaz.png', 'إكسير الحياة والشباب المستخلص بدقة فائقة. قطرات مركزة غنية بالهرمونات الطبيعية، الأحماض الأمينية، والفيتامينات لرفع مستويات الحيوية، التركيز، وتجديد خلايا الجسم بالكامل.', '10gr_only')">
+        <div>
+            <div class="product-visual">
+                <img src="aaz.png" alt="غذاء ملكة النحل النقي" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
+                <span class="featured-tag">إكسير الحيوية والشباب ✨</span>
+            </div>
+            <h4 class="product-title">غذاء ملكة النحل النقي</h4>
+            <p class="product-desc">إكسير الحياة والشباب المستخلص بدقة فائقة. قطرات مركزة غنية بالفيتامينات لرفع مستويات الحيوية، التركيز، وتجديد خلايا الجسم.</p>
+        </div>
+        <div class="product-meta">
+            <span class="product-price">20 د.ت <small style="font-size:0.75rem; color:var(--text-muted); font-weight:normal;">(10غ)</small></span>
+            <button class="add-to-cart-btn" onclick="event.stopPropagation(); openProductModal(event, 'غذاء ملكة النحل النقي', 20, 'aaz.png', 'إكسير الحياة والشباب المستخلص بدقة فائقة. قطرات مركزة غنية بالهرمونات الطبيعية، الأحماض الأمينية، والفيتامينات لرفع مستويات الحيوية، التركيز، وتجديد خلايا الجسم بالكامل.', '10gr_only')">إختر الوزن</button>
+        </div>
+    </div>
+        </div>
+		
+		
+		
     </section>
 
     <div class="product-modal" id="productModal" onclick="closeProductModal()">
@@ -390,7 +422,15 @@
             const selectorContainer = document.getElementById('modalWeightSelector');
             const labelContainer = document.querySelector('.weight-label');
 
-            if (type === '100gr_only') {
+            if (type === '10gr_only') {
+                currentSelectedWeight = '10 غرام';
+                if(labelContainer) labelContainer.innerHTML = '<i class="fa-solid fa-weight-hanging"></i> الوزن المتوفر:';
+                if(selectorContainer) {
+                    selectorContainer.innerHTML = `
+                        <button class="weight-btn active" style="pointer-events: none; background: rgba(212, 175, 55, 0.1); border-color: var(--gold); color: var(--gold);">10 غرام</button>
+                    `;
+                }
+            } else if (type === '100gr_only') {
                 currentSelectedWeight = '100 غرام';
                 if(labelContainer) labelContainer.innerHTML = '<i class="fa-solid fa-weight-hanging"></i> الوزن المتوفر:';
                 if(selectorContainer) {
@@ -422,6 +462,7 @@
         }
 
         function calculatePriceForWeight(basePrice, weight) {
+            if (weight === '10 غرام') return basePrice;
             if (weight === '100 غرام') return basePrice;
             if (weight === '250 غرام') {
                 return Math.ceil(basePrice * 0.55); 
