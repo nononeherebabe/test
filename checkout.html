@@ -36,6 +36,35 @@
 			
 			.submit-order-btn { background: var(--gold); color: #000; border: none; padding: 15px; border-radius: 6px; font-weight: 700; cursor: pointer; font-size: 1.1rem; margin-top: 15px; transition: opacity 0.2s; width: 100%; }
 			.submit-order-btn:hover { opacity: 0.9; }
+			.payment-method-container {
+    background: #111; /* خلفية داكنة */
+    border: 1px solid var(--gold); /* إطار ذهبي رقيق */
+    padding: 15px 20px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between; /* تبعد العنوان على القيمة */
+    align-items: center;
+    margin-top: 20px;
+    color: #fff;
+}
+
+.payment-label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+}
+
+.payment-option-text {
+    color: var(--gold); /* اللون الذهبي للنص والأيقونة */
+    display: flex;
+    align-items: center;
+    gap: 10px; /* مسافة بين النص والأيقونة */
+    font-weight: 700;
+}
+
+.payment-option-text i {
+    color: var(--gold); /* ضمان أن الأيقونة ذهبية */
+}
 		</style>
 	</head>
 	<body>
@@ -92,15 +121,13 @@
                 <input type="text" name="العنوان التفصيلي" placeholder="اسم الشارع، رقم المنزل..." required>
             </div>
 
-            <div class="form-group">
-                <label><i class="fa-solid fa-tree-city"></i> الرمز البريدي (Zip Code)</label>
-                <input type="text" name="الرمز البريدي" placeholder="تتكون من 4 أرقام" pattern="[0-9]{4}" required>
-            </div>
 
             <div class="payment-method-container">
-                <span class="payment-label">خيارات الدفع المتاحة:</span>
-                <span class="cod-badge"><i class="fa-solid fa-truck-ramp-box"></i> الدفع عند الاستلام (COD)</span>
-            </div>
+    <span class="payment-label">خيارات الدفع المتاحة:</span>
+    <span class="payment-option-text">
+        الدفع عند الاستلام <i class="fa-solid fa-hand-holding-dollar"></i>
+    </span>
+</div>
 
             <button type="submit" class="submit-order-btn">
                 <span>تأكيد الطلب الآن</span>
