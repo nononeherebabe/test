@@ -115,37 +115,37 @@
 
     <script>
         // جلب وحساب المجموع عند تحميل الصفحة
-        window.onload = function() {
-            const rawCart = localStorage.getItem('honey_cart');
-            if (!rawCart || JSON.parse(rawCart).length === 0) {
-                alert('سلة المشتريات فارغة، سيتم توجيهك للمتجر.');
-                window.location.href = 'index.html';
-                return;
-            }
-            
-            const cart = JSON.parse(rawCart);
-            let subtotal = 0;
-            
-            cart.forEach(item => {
-                subtotal += item.price * item.quantity;
-            });
-            
-            const totalWithShipping = subtotal + 8;
-            
-            document.getElementById('subTotal').innerText = subtotal + ' د.ت';
-            document.getElementById('finalTotal').innerText = totalWithShipping + ' د.ت';
-        };
-
-        // الـ Redirect المباشر وتنظيف السلة عند الضغط على زر الشراء
-        document.getElementById("directOrderForm").addEventListener("submit", function(event) {
-            event.preventDefault(); // منع الفورم من تحديث الصفحة أو الـ Submit العادي
-            
-            // 1. مسح السلة من متصفح الكليون ديريكت
-            localStorage.removeItem('honey_cart');
-            
-            // 2. تحويل العميل فوراً لصفحة النجاح
-            window.location.href = 'success.html';
+window.onload = function() {
+        const rawCart = localStorage.getItem('honey_cart');
+        
+        // التحقق من وجود السلة
+        if (!rawCart || JSON.parse(rawCart).length === 0) {
+            alert('سلة المشتريات فارغة، سيتم توجيهك للمتجر.');
+            window.location.href = 'index.html';
+            return;
+        }
+        
+        const cart = JSON.parse(rawCart);
+        let subtotal = 0;
+        
+        cart.forEach(item => {
+            // تأكد من أن أسماء الخصائص (price, quantity) مطابقة لما ترسله من صفحة المتجر
+            subtotal += parseFloat(item.price) * parseInt(item.quantity);
         });
+        
+        // إضافة مصاريف التوصيل
+        const totalWithShipping = subtotal + 8;
+        
+        // تحديث العنصر الموجود فقط (finalTotal)
+        document.getElementById('finalTotal').innerText = totalWithShipping + ' د.ت';
+    };
+
+    // معالجة إرسال الطلب
+    document.getElementById("directOrderForm").addEventListener("submit", function(event) {
+        event.preventDefault(); 
+        localStorage.removeItem('honey_cart');
+        window.location.href = 'success.html';
+    });
 		</script>
 	</body>
 	</html>
