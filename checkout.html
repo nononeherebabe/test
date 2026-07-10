@@ -1,100 +1,76 @@
-	<!DOCTYPE html>
-	<html lang="ar" dir="rtl">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>إتمام الطلب - مناحل الجنوب</title>
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-		<style>
-			:root { --gold: #d4af37; --dark-bg: #111111; --dark-card: #1a1a1a; --text-light: #f5f5f5; --text-muted: #aaaaaa; }
-			* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; }
-			body { background-color: var(--dark-bg); color: var(--text-light); padding: 40px 5%; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
-			
-			.checkout-container { background: var(--dark-card); border: 1px solid rgba(212, 175, 55, 0.1); padding: 30px; border-radius: 12px; width: 100%; max-width: 550px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-			.back-btn { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 8px; margin-bottom: 20px; transition: color 0.2s; }
-			.back-btn:hover { color: var(--gold); }
-			
-			h2 { font-size: 1.6rem; color: var(--gold); margin-bottom: 8px; }
-			p.subtitle { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 25px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 15px; }
-			
-			.summary-box { background: rgba(212, 175, 55, 0.05); border: 1px dashed var(--gold); padding: 15px; border-radius: 8px; margin-bottom: 25px; }
-			.summary-row { display: flex; justify-content: space-between; font-weight: 700; font-size: 1.1rem; }
-			
-			.checkout-form { display: flex; flex-direction: column; gap: 15px; }
-			.form-group { display: flex; flex-direction: column; gap: 6px; }
-			.form-group label { font-size: 0.85rem; color: var(--text-muted); font-weight: 600; }
-			
-			.checkout-form input, .checkout-form select { background: #111; border: 1px solid rgba(212, 175, 55, 0.2); padding: 12px; border-radius: 6px; color: #fff; font-size: 0.95rem; width: 100%; }
-			.checkout-form input:focus, .checkout-form select:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 5px rgba(212, 175, 55, 0.3); }
-			
-			.payment-method-container { background: #111; border: 1px solid rgba(212, 175, 55, 0.2); padding: 14px; border-radius: 6px; display: flex; align-items: center; justify-content: space-between; margin-top: 10px; }
-			.payment-label { font-size: 0.95rem; font-weight: 600; }
-			.cod-badge { background: rgba(212, 175, 55, 0.1); color: var(--gold); padding: 5px 12px; border-radius: 4px; font-size: 0.85rem; font-weight: bold; border: 1px solid rgba(212, 175, 55, 0.3); }
-			
-			.submit-order-btn { background: var(--gold); color: #000; border: none; padding: 15px; border-radius: 6px; font-weight: 700; cursor: pointer; font-size: 1.1rem; margin-top: 15px; transition: opacity 0.2s; width: 100%; }
-			.submit-order-btn:hover { opacity: 0.9; }
-			.payment-method-container {
-    background: #111; /* خلفية داكنة */
-    border: 1px solid var(--gold); /* إطار ذهبي رقيق */
-    padding: 15px 20px;
-    border-radius: 8px;
-    display: flex;
-    justify-content: space-between; /* تبعد العنوان على القيمة */
-    align-items: center;
-    margin-top: 20px;
-    color: #fff;
-}
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إتمام الطلب - مناحل الجنوب</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root { --gold: #d4af37; --dark-bg: #111111; --dark-card: #1a1a1a; --text-light: #f5f5f5; --text-muted: #aaaaaa; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; }
+        body { background-color: var(--dark-bg); color: var(--text-light); padding: 40px 5%; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        
+        .checkout-container { background: var(--dark-card); border: 1px solid rgba(212, 175, 55, 0.1); padding: 30px; border-radius: 12px; width: 100%; max-width: 550px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .back-btn { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 8px; margin-bottom: 20px; transition: color 0.2s; }
+        .back-btn:hover { color: var(--gold); }
+        
+        h2 { font-size: 1.6rem; color: var(--gold); margin-bottom: 8px; }
+        p.subtitle { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 25px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 15px; }
+        
+        .summary-box { background: rgba(212, 175, 55, 0.05); border: 1px dashed var(--gold); padding: 15px; border-radius: 8px; margin-bottom: 25px; }
+        .summary-row { display: flex; justify-content: space-between; font-weight: 700; font-size: 1.1rem; }
+        
+        .checkout-form { display: flex; flex-direction: column; gap: 15px; }
+        .form-group { display: flex; flex-direction: column; gap: 6px; }
+        .form-group label { font-size: 0.85rem; color: var(--text-muted); font-weight: 600; }
+        
+        .checkout-form input, .checkout-form select { background: #111; border: 1px solid rgba(212, 175, 55, 0.2); padding: 12px; border-radius: 6px; color: #fff; font-size: 0.95rem; width: 100%; }
+        .checkout-form input:focus, .checkout-form select:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 5px rgba(212, 175, 55, 0.3); }
+        
+        /* التعديل هنا: يظهر اللون الأحمر فقط بعد أن يبدأ المستخدم بالكتابة */
+        .checkout-form input:required:invalid:not(:placeholder-shown) {
+            border: 2px solid #ff4d4d;
+        }
+        
+        .payment-method-container { background: #111; border: 1px solid var(--gold); padding: 15px 20px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; margin-top: 20px; color: #fff; }
+        .payment-label { font-size: 1rem; font-weight: 600; color: #fff; }
+        .payment-option-text { color: var(--gold); display: flex; align-items: center; gap: 10px; font-weight: 700; }
+        .payment-option-text i { color: var(--gold); }
+        
+        .submit-order-btn { background: var(--gold); color: #000; border: none; padding: 15px; border-radius: 6px; font-weight: 700; cursor: pointer; font-size: 1.1rem; margin-top: 15px; transition: opacity 0.2s; width: 100%; }
+        .submit-order-btn:hover { opacity: 0.9; }
+    </style>
+</head>
+<body>
 
-.payment-label {
-    font-size: 1rem;
-    font-weight: 600;
-    color: #fff;
-}
+    <div class="checkout-container">
+        <a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-right"></i> العودة للمتجر</a>
+        <h2>إتمام عملية الشراء</h2>
+        <p class="subtitle">يرجى ملء البيانات بدقة لتأكيد طلبيتك وشحنها إليك.</p>
+        
+        <div class="summary-box">
+            <div class="summary-row">
+                <span>المجموع الإجمالي للطلب:</span>
+                <span id="finalTotal">0 د.ت</span>
+            </div>
+        </div>
 
-.payment-option-text {
-    color: var(--gold); /* اللون الذهبي للنص والأيقونة */
-    display: flex;
-    align-items: center;
-    gap: 10px; /* مسافة بين النص والأيقونة */
-    font-weight: 700;
-}
-
-.payment-option-text i {
-    color: var(--gold); /* ضمان أن الأيقونة ذهبية */
-}
-		</style>
-	</head>
-	<body>
-
-		<div class="checkout-container">
-			<a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-right"></i> العودة للمتجر</a>
-			<h2>إتمام عملية الشراء</h2>
-			<p class="subtitle">يرجى ملء البيانات بدقة لتأكيد طلبيتك وشحنها إليك.</p>
-			
-			<div class="summary-box">
-				<div class="summary-row">
-					<span>المجموع الإجمالي للطلب:</span>
-					<span id="finalTotal">0 د.ت</span>
-				</div>
-			</div>
-
-			<!-- FORM ACTION: ضع رابط Formspree الخاص بك هنا عوضاً عن الرابط التجريبي بالأسفل -->
-				<!-- نحينا الـ action والـ method متاع formspree تماماً -->
         <form class="checkout-form" id="directOrderForm">
             
             <div class="form-group">
                 <label><i class="fa-regular fa-user"></i> الإسم واللقب</label>
-                <input type="text" name="الاسم واللقب" placeholder="الاسم واللقب" required>
+                <input type="text" name="الاسم واللقب" placeholder="أدخل اسمك الكامل" required>
             </div>
 
             <div class="form-group">
                 <label><i class="fa-solid fa-phone-volume"></i> رقم الهاتف</label>
-                <input type="tel" name="رقم الهاتف" placeholder="رقم الهاتف (8 أرقام)" pattern="[0-9]{8}" required>
+                <input type="tel" name="رقم الهاتف" placeholder="رقم الهاتف (8 أرقام)" 
+                       oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 8)" 
+                       pattern="[0-9]{8}" title="يجب إدخال 8 أرقام بالضبط" required>
             </div>
-
 
             <div class="form-group">
                 <label><i class="fa-solid fa-map-location-dot"></i> الولاية</label>
@@ -121,13 +97,12 @@
                 <input type="text" name="العنوان التفصيلي" placeholder="اسم الشارع، رقم المنزل..." required>
             </div>
 
-
             <div class="payment-method-container">
-    <span class="payment-label">خيارات الدفع المتاحة:</span>
-    <span class="payment-option-text">
-        الدفع عند الاستلام <i class="fa-solid fa-hand-holding-dollar"></i>
-    </span>
-</div>
+                <span class="payment-label">خيارات الدفع المتاحة:</span>
+                <span class="payment-option-text">
+                    الدفع عند الاستلام <i class="fa-solid fa-hand-holding-dollar"></i>
+                </span>
+            </div>
 
             <button type="submit" class="submit-order-btn">
                 <span>تأكيد الطلب الآن</span>
@@ -137,38 +112,29 @@
     </div>
 
     <script>
-        // جلب وحساب المجموع عند تحميل الصفحة
-window.onload = function() {
-        const rawCart = localStorage.getItem('honey_cart');
-        
-        // التحقق من وجود السلة
-        if (!rawCart || JSON.parse(rawCart).length === 0) {
-            alert('سلة المشتريات فارغة، سيتم توجيهك للمتجر.');
-            window.location.href = 'index.html';
-            return;
-        }
-        
-        const cart = JSON.parse(rawCart);
-        let subtotal = 0;
-        
-        cart.forEach(item => {
-            // تأكد من أن أسماء الخصائص (price, quantity) مطابقة لما ترسله من صفحة المتجر
-            subtotal += parseFloat(item.price) * parseInt(item.quantity);
-        });
-        
-        // إضافة مصاريف التوصيل
-        const totalWithShipping = subtotal + 8;
-        
-        // تحديث العنصر الموجود فقط (finalTotal)
-        document.getElementById('finalTotal').innerText = totalWithShipping + ' د.ت';
-    };
+        window.onload = function() {
+            const rawCart = localStorage.getItem('honey_cart');
+            if (!rawCart || JSON.parse(rawCart).length === 0) {
+                alert('سلة المشتريات فارغة، سيتم توجيهك للمتجر.');
+                window.location.href = 'index.html';
+                return;
+            }
+            
+            const cart = JSON.parse(rawCart);
+            let subtotal = 0;
+            cart.forEach(item => {
+                subtotal += parseFloat(item.price) * parseInt(item.quantity);
+            });
+            
+            const totalWithShipping = subtotal + 8;
+            document.getElementById('finalTotal').innerText = totalWithShipping + ' د.ت';
+        };
 
-    // معالجة إرسال الطلب
-    document.getElementById("directOrderForm").addEventListener("submit", function(event) {
-        event.preventDefault(); 
-        localStorage.removeItem('honey_cart');
-        window.location.href = 'success.html';
-    });
-		</script>
-	</body>
-	</html>
+        document.getElementById("directOrderForm").addEventListener("submit", function(event) {
+            event.preventDefault(); 
+            localStorage.removeItem('honey_cart');
+            window.location.href = 'success.html';
+        });
+    </script>
+</body>
+</html>
